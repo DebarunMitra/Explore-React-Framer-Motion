@@ -34,26 +34,7 @@ function App() {
       </>
     )
   )
-
-  // return (
-  //   <>
-  //     <Header />
-  //     <Routes>
-  //       <Route path="/base">
-  //         <Base addBase={addBase} pizza={pizza} />
-  //       </Route>
-  //       <Route path="/toppings">
-  //         <Toppings addTopping={addTopping} pizza={pizza} />
-  //       </Route>
-  //       <Route path="/order">
-  //         <Order pizza={pizza} />
-  //       </Route>
-  //       <Route path="/">
-  //         <Home />
-  //       </Route>
-  //     </Routes>
-  //   </>
-  // );
+  
   return (
     <>
       <Header />
