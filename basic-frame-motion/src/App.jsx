@@ -1,24 +1,65 @@
-import React from 'react'
-import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom'
-// import Header from './components/nav/Header';
-import Dashboard from './components/Dashboard/dashboard'
-import SignUp from './components/Profile/SignUp'
+import React, { useState } from 'react';
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
+import Header from './components/Header';
+import Home from './components/Home';
+import Base from './components/Base';
+import Toppings from './components/Toppings';
+import Order from './components/Order';
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/">
-      <Route index element={<Dashboard />} />
-      <Route path="sign-up" element={<SignUp />} />
-    </Route>
+
+function App() {
+  const [pizza, setPizza] = useState({ base: "", toppings: [] });
+
+  const addBase = (base) => {
+    setPizza({ ...pizza, base })
+  }
+  
+  const addTopping = (topping) => {
+    let newToppings;
+    if(!pizza.toppings.includes(topping)){
+      newToppings = [...pizza.toppings, topping];
+    } else {
+      newToppings = pizza.toppings.filter(item => item !== topping);
+    }
+    setPizza({ ...pizza, toppings: newToppings });
+  }
+
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route exact path="/" element={<Home />}></Route>
+        <Route exact path="base" element={<Base addBase={addBase} pizza={pizza} />}></Route>
+        <Route exact path="toppings" element={<Toppings addTopping={addTopping} pizza={pizza} />}></Route>
+        <Route exact path="order" element={<Order pizza={pizza} />}></Route>
+      </>
+    )
   )
-)
 
-function App () {
+  // return (
+  //   <>
+  //     <Header />
+  //     <Routes>
+  //       <Route path="/base">
+  //         <Base addBase={addBase} pizza={pizza} />
+  //       </Route>
+  //       <Route path="/toppings">
+  //         <Toppings addTopping={addTopping} pizza={pizza} />
+  //       </Route>
+  //       <Route path="/order">
+  //         <Order pizza={pizza} />
+  //       </Route>
+  //       <Route path="/">
+  //         <Home />
+  //       </Route>
+  //     </Routes>
+  //   </>
+  // );
   return (
     <>
+      <Header />
       <RouterProvider router={router}/>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
