@@ -6,10 +6,12 @@ import Base from './components/Base';
 import Toppings from './components/Toppings';
 import Order from './components/Order';
 import { AnimatePresence } from "framer-motion";
+import Modal from './components/Modal';
 
 
 function App() {
   const [pizza, setPizza] = useState({ base: "", toppings: [] });
+  const [showModal, setShowModal] = useState(false);
 
   const addBase = (base) => {
     setPizza({ ...pizza, base })
@@ -43,12 +45,12 @@ function App() {
     const locationArr = location.pathname?.split('/') ?? [];
     console.log(locationArr);
     return (
-      <AnimatePresence mode='wait' initial={false}>
+      <AnimatePresence mode='wait' initial={false} onExitComplete={()=>setShowModal(false)}>
         <Routes location={location} key={locationArr[1]}>
           <Route exact path="/" element={<Home />}></Route>
           <Route exact path="base" element={<Base addBase={addBase} pizza={pizza} />}></Route>
           <Route exact path="toppings" element={<Toppings addTopping={addTopping} pizza={pizza} />}></Route>
-          <Route exact path="order" element={<Order pizza={pizza} />}></Route>
+          <Route exact path="order" element={<Order pizza={pizza} setShowModal={setShowModal} />}></Route>
         </Routes>
       </AnimatePresence>
     );
@@ -61,6 +63,7 @@ function App() {
   return (
     <>
       <Header />
+      <Modal showModal={showModal} setShowModal={setShowModal} />
       <RouterProvider router={router}/>
     </>
   );
