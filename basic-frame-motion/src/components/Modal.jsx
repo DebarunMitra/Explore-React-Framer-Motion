@@ -30,6 +30,11 @@ const Modal = ({ showModal }) => {
             variants={modal}
           >
             <p>Want to make another Pizza?</p>
+            {/* <Link to="/">
+                <motion.button
+                >Start Again
+                </motion.button>
+            </Link> */}
             {/* <Link href="">
               <button>Start Again</button>
             </Link> */}
