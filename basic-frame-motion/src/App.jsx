@@ -43,7 +43,7 @@ function App() {
     const locationArr = location.pathname?.split('/') ?? [];
     console.log(locationArr);
     return (
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         <Routes location={location} key={locationArr[1]}>
           <Route exact path="/" element={<Home />}></Route>
           <Route exact path="base" element={<Base addBase={addBase} pizza={pizza} />}></Route>
