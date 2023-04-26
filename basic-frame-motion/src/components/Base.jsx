@@ -21,7 +21,7 @@ const containerVariants = {
   } 
 }
 
-const nextVariant= {
+const nextVariants= {
   hidden: {
     x: '-100vw',
   },
@@ -74,7 +74,7 @@ const Base = ({ addBase, pizza }) => {
 
       {pizza.base && (
         <motion.div className="next"
-          variants={nextVariant}
+          variants={nextVariants}
           // initial="hidden"
           // animate="visible"
         >
