@@ -7,6 +7,7 @@ import Toppings from './components/Toppings';
 import Order from './components/Order';
 import { AnimatePresence } from "framer-motion";
 import Modal from './components/Modal';
+import ParticlesBackground from './components/Particles/ParticlesBackground';
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
   
   return (
     <>
+      <ParticlesBackground />
       <Header />
       <Modal showModal={showModal} setShowModal={setShowModal} />
       <RouterProvider router={router}/>
